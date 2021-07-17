@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -24,16 +23,72 @@
                 </ul>
                 <p class="d-none d-md-block lead mb-0 text-white"> <i class="fa d-inline fa-lg fa-stop-circle"></i> <b> AGENDA</b> </p>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-1"> <a class="nav-link" href="#"> <i class="fa fa-github fa-fw fa-lg"></i> </a> </li>
+                    <li class="nav-item mx-1"> <a class="nav-link" target="_blank" href="https://github.com/joaomarcosns/agenda"> <i class="fa fa-github fa-fw fa-lg"></i> </a> </li>
                     <li class="nav-item mx-1"> <a class="nav-link" href="<?= URL ?>/usuario/sair"> <i class="fa fa-power-off fa-fw fa-lg"></i> </a> </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- TABLE -->
+    <!-- form -->
+    <form action="" method="post">
+        <div class="mb-3">
+            <label for="" class="form-label">Nome</label>
+            <input type="text" id="nome" name="nome">
+        </div>
 
+        <div class="mb-3 telefone">
+            <div class="mb-3">
+                <label for="" class="form-label">DDD</label>
+                <input type="text" id="ddd" name="ddd">
+            </div>
 
+            <div class="mb-3">
+                <label for="" class="form-label">Numero</label>
+                <input type="text" id="numero" name="numero">
+            </div>
+        </div>
+
+        <div class="mb-3 endereco">
+            <div class="mb-3">
+                <label for="" class="form-label">CEP</label>
+                <input type="text" id="cep" name="cep">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Rua</label>
+                <input type="text" id="rua" name="rua">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Complemento</label>
+                <input type="text" id="complemento" name="complemento">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Bairro</label>
+                <input type="text" id="bairro" name="bairro">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">Cidade</label>
+                <input type="text" id="cidade" name="cidade">
+            </div>
+
+            <div class="mb-3">
+                <label for="" class="form-label">UF</label>
+                <input type="text" id="uf" name="uf">
+            </div>
+        </div>
+        </div>
+
+    </form>
+    
+<script src="<?= URL?>/public/js/jquery-3.6.0.min.js"></script>
+<script src="<?= URL?>/public/js/viaCEP.js"></script>
 </body>
+
+
+
 
 </html>

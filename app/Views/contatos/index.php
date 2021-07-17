@@ -24,7 +24,7 @@
                 </ul>
                 <p class="d-none d-md-block lead mb-0 text-white"> <i class="fa d-inline fa-lg fa-stop-circle"></i> <b> AGENDA</b> </p>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mx-1"> <a class="nav-link" href="#"> <i class="fa fa-github fa-fw fa-lg"></i> </a> </li>
+                    <li class="nav-item mx-1"> <a class="nav-link" target="_blank" href="https://github.com/joaomarcosns/agenda"> <i class="fa fa-github fa-fw fa-lg"></i> </a> </li>
                     <li class="nav-item mx-1"> <a class="nav-link" href="<?= URL?>/usuario/sair"> <i class="fa fa-power-off fa-fw fa-lg"></i> </a> </li>
                 </ul>
             </div>
