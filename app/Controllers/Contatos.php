@@ -15,6 +15,7 @@ class Contatos extends Controller
 
     public function cadastar()
     {
+        
         $this->view('contatos/cadastar');
     }
 }
