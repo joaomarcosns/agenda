@@ -18,6 +18,8 @@ $(document).ready(function () {
                         if (!("erro" in dados)) {
                             $("#cidade").val(dados.localidade);
                             $("#uf").val(dados.uf);
+                            $("#estado").val(dados.uf);
+                            $("#city").val(dados.localidade);
                         }
                         else {
                             limpa_formulário_cep();
