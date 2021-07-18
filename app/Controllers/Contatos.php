@@ -5,23 +5,35 @@ class Contatos extends Controller
 
     public function __construct()
     {
-        $this->agendaModel = $this->model('UsuarioModel');
+        if (!Sessao::estaLogado()) :
+            Redirect::redirecionar('usuarios/login');
+        endif;
+        $this->telefoneModel = $this->model('telefoneModel');
+        $this->contatoModel = $this->model('contatoModel');
+        $this->enderecoModel = $this->model('enderecoModel');
     }
 
     public function index()
     {
+        $dados =
+        [
+
+        ];
         $this->view('contatos/index');
     }
 
     public function cadastar()
     {
+        $idUsuario = (int) $_SESSION["USUARIO_ID"];
 
         $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if (isset($formulario)) :
             $dados = [
+                'idUsuario' => $idUsuario,
                 'nome' => trim($formulario['nome']),
                 'ddd' => trim($formulario['ddd']),
                 'numero' => trim($formulario['numero']),
+                
                 'cep' => trim($formulario['cep']),
                 'rua' => trim($formulario['rua']),
                 'complemento' => trim($formulario['complemento']),
@@ -30,6 +42,7 @@ class Contatos extends Controller
                 'uf' => trim($formulario['estado']),
                 'numero-casa' => trim($formulario['numero-casa'])
             ];
+
             if (in_array("", $formulario)) :
                 if (empty($formulario['nome'])) :
                     $dados['nome_erro'] = "Preencha o campo!";
@@ -106,11 +119,30 @@ class Contatos extends Controller
                     $dados['numero-casa_erro'] = "Formato informado é <b>invalido</b>";
 
                 else :
-                    echo "Pode cadastrar<hr>";
+                    if ($this->contatoModel->cadastar($dados)) :
+                        $ultimoid = $this->contatoModel->getUltimoId();
+                        $ultimoid =  (int) $ultimoid;
+                        echo "Ok";
+                    else :
+                        die("Erro");
+                    endif;
+
+                    if ($this->telefoneModel->cadastar($dados, $ultimoid)) :
+                        echo "Ok";
+                    else :
+                        die("Erro");
+                    endif;
+
+                    if ($this->enderecoModel->cadastar($dados, $ultimoid)) :
+                        echo "Ok";
+                    else :
+                        die("Erro");
+                    endif;
+
                 endif;
 
             endif;
-            var_dump($formulario);
+            // var_dump($formulario);
         else :
             $dados = [
                 'nome' => '',

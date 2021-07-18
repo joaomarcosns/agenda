@@ -9,6 +9,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= URL ?>/public/css/style.css">
+    
 
 </head>
 
@@ -25,7 +26,7 @@
                 <p class="d-none d-md-block lead mb-0 text-white"> <i class="fa d-inline fa-lg fa-stop-circle"></i> <b> AGENDA</b> </p>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-1"> <a class="nav-link" target="_blank" href="https://github.com/joaomarcosns/agenda"> <i class="fa fa-github fa-fw fa-lg"></i> </a> </li>
-                    <li class="nav-item mx-1"> <a class="nav-link" href="<?= URL ?>/usuario/sair"> <i class="fa fa-power-off fa-fw fa-lg"></i> </a> </li>
+                    <li class="nav-item mx-1"> <a class="nav-link" href="<?= URL ?>/usuarios/sair"> <i class="fa fa-power-off fa-fw fa-lg"></i> </a> </li>
                 </ul>
             </div>
         </div>
@@ -75,6 +76,7 @@
                     <!-- End telefone -->
                 </div>
             </div>
+            
 
             <div class="card mt-5">
                 <h5 class="card-header text-center">Endereço</h5>

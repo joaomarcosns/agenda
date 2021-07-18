@@ -3,5 +3,5 @@
 if (!Sessao::estaLogado()) :
     Redirect::redirecionar('usuarios/login');
 else :
-    Redirect::redirecionar('agenda/index');
+    Redirect::redirecionar('contatos/index');
 endif;

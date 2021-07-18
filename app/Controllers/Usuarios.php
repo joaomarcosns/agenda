@@ -108,6 +108,10 @@ class Usuarios extends Controller
 
     public function login()
     {
+        if (Sessao::estaLogado()) :
+            Redirect::redirecionar('usuarios/login');
+        endif;
+        
         $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
         if (isset($formulario)) :
             $dados = [
@@ -144,30 +148,25 @@ class Usuarios extends Controller
 
     private function sesaoUsuario($login)
     {
-        $_SESSION["USUARIO_ID"] = $login->id_usuario;
+        $_SESSION["USUARIO_ID"] = $login->id;
         $_SESSION["USUARIO_NOME_COMPLETO"] = $login->nome_completo;
         $_SESSION["USUARIO_USER"] = $login->usuario;
         $_SESSION["USUARIO_EMAIL"] = $login->email;
-        $_SESSION["USUARIO_STATUS"] = $login->status;
-        $_SESSION["USUARIO_NIVEL_ACESSO"] = $login->nivel_acesso;
         $_SESSION["USUARIO_DATA_CRIACAO"] = $login->criado_em;
     }
 
+
     public function sair()
     {
-        if (!Sessao::estaLogado()) :
-            Redirect::redirecionar('usuarios/login');
-        endif;
 
         unset($_SESSION["USUARIO_ID"]);
         unset($_SESSION["USUARIO_NOME_COMPLETO"]);
         unset($_SESSION["USUARIO_USER"]);
         unset($_SESSION["USUARIO_EMAIL"]);
-        unset($_SESSION["USUARIO_STATUS"]);
-        unset($_SESSION["USUARIO_NIVEL_ACESSO"]);
         unset($_SESSION["USUARIO_DATA_CRIACAO"]);
 
         session_destroy();
+
         Redirect::redirecionar('usuarios/login');
     }
 }

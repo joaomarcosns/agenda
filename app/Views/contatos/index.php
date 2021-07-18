@@ -19,21 +19,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbar20">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"> <a class="nav-link" href="#">Home</a> </li>
-                    <li class="nav-item"> <a class="nav-link" href="<?= URL?>/contatos/cadastar">Cadastrar</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="<?= URL ?>/contatos/index">Home</a> </li>
+                    <li class="nav-item"> <a class="nav-link" href="<?= URL ?>/contatos/cadastar">Cadastrar</a> </li>
                 </ul>
                 <p class="d-none d-md-block lead mb-0 text-white"> <i class="fa d-inline fa-lg fa-stop-circle"></i> <b> AGENDA</b> </p>
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-1"> <a class="nav-link" target="_blank" href="https://github.com/joaomarcosns/agenda"> <i class="fa fa-github fa-fw fa-lg"></i> </a> </li>
-                    <li class="nav-item mx-1"> <a class="nav-link" href="<?= URL?>/usuario/sair"> <i class="fa fa-power-off fa-fw fa-lg"></i> </a> </li>
+                    <li class="nav-item mx-1"> <a class="nav-link" href="<?= URL ?>/usuarios/sair"> <i class="fa fa-power-off fa-fw fa-lg"></i> </a> </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- TABLE -->
-
-
+    <div class="container mt-5">
+        <div class="card">
+            <h5 class="card-header">Featured</h5>
+            <div class="card-body text-center">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

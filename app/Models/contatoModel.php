@@ -5,6 +5,7 @@ class contatoModel
     private $id;
     private $idUsuario;
     private $nome;
+    private $ultimoId;
 
     public function __construct()
     {
@@ -35,6 +36,14 @@ class contatoModel
     }
 
     /**
+     * @return mixed
+     */
+    public function getUltimoId()
+    {
+        return $this->ultimoId;
+    }
+
+    /**
      * @param mixed $id
      */
     public function setId($id)
@@ -56,5 +65,47 @@ class contatoModel
     public function setNome($nome)
     {
         $this->nome = $nome;
+    }
+
+    /**
+     * @param mixed $ultimoId
+     */
+    public function setUltimoId($ultimoId)
+    {
+        $this->ultimoId = $ultimoId;
+    }
+
+    public function cadastar($dados)
+    {
+        $id = (int)$dados['idUsuario'];
+        $this->setIdUsuario($id);
+        $this->setNome($dados['nome']);
+        $this->db->query("INSERT INTO contato(id_usuario, nome) VALUES (:id_usuario, :nome)");
+        $this->db->bind(':id_usuario', $this->getIdUsuario());
+        $this->db->bind(':nome', $this->getNome());
+
+        if ($this->db->executa()) :
+            $this->setUltimoId($this->db->ultimoIdInserido());
+            return true;
+        else :
+            return false;
+        endif;
+        // $ultimoid = $this->clienteModel->getUltimoId();
+
+
+    }
+
+    public function selectAll($dados)
+    {
+        $id = (int)$dados['idUsuario'];
+        $this->setIdUsuario($id);
+        $this->db->query("SELECT contato.nome, telefone.ddd, telefone.numero, endereco.cep, endereco.logradouro, endereco.complemento, endereco.bairro, endereco.localidade,
+        endereco.uf, endereco.numero_casa
+        from contato, telefone, endereco
+        where contato.id = telefone.id_contato
+        and contato.id = endereco.id_contato
+        and contato.id_usuario = :id_usuario");
+        $this->db->bind(':id_usuario', $this->getIdUsuario());
+        return $this->db->resultados();
     }
 }

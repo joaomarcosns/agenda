@@ -1,8 +1,8 @@
 <?php
 
-class telefoneModel 
+class telefoneModel
 {
-     private $id;
+    private $id;
     private $idContato;
     private $ddd;
     private $numero;
@@ -11,7 +11,7 @@ class telefoneModel
     {
         $this->db = new Database();
     }
-    
+
     /**
      * @return mixed
      */
@@ -76,4 +76,21 @@ class telefoneModel
         $this->numero = $numero;
     }
 
+    public function cadastar($dados, $ultimoid)
+    {
+        $this->setIdContato($ultimoid);
+        $this->setDdd($dados['ddd']);
+        $this->setNumero($dados['numero']);
+        $this->db->query("INSERT INTO telefone(id_contato, ddd, numero) VALUES (:id_contato, :ddd, :numero)");
+        $this->db->bind(':id_contato', $this->getIdContato());
+        $this->db->bind(':ddd', $this->getDdd());
+        $this->db->bind(':numero', $this->getNumero());
+        if ($this->db->executa()) :
+            return true;
+        else :
+            return false;
+        endif;
+    }
+
+    
 }
