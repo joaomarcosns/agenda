@@ -95,11 +95,10 @@ class contatoModel
 
     }
 
-    public function selectAll($dados)
+    public function selectAll($id)
     {
-        $id = (int)$dados['idUsuario'];
         $this->setIdUsuario($id);
-        $this->db->query("SELECT contato.nome, telefone.ddd, telefone.numero, endereco.cep, endereco.logradouro, endereco.complemento, endereco.bairro, endereco.localidade,
+        $this->db->query("SELECT contato.nome, contato.criado_em, telefone.ddd, telefone.numero, endereco.cep, endereco.logradouro, endereco.complemento, endereco.bairro, endereco.localidade,
         endereco.uf, endereco.numero_casa
         from contato, telefone, endereco
         where contato.id = telefone.id_contato

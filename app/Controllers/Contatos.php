@@ -15,11 +15,14 @@ class Contatos extends Controller
 
     public function index()
     {
-        $dados =
-        [
+        $idUsuario = (int) $_SESSION["USUARIO_ID"];
+        $todos  = $this->contatoModel->selectAll($idUsuario);
 
+        $dados = [
+            'todos'  => $todos  
         ];
-        $this->view('contatos/index');
+        
+        $this->view('contatos/index', $dados);
     }
 
     public function cadastar()
@@ -33,7 +36,7 @@ class Contatos extends Controller
                 'nome' => trim($formulario['nome']),
                 'ddd' => trim($formulario['ddd']),
                 'numero' => trim($formulario['numero']),
-                
+
                 'cep' => trim($formulario['cep']),
                 'rua' => trim($formulario['rua']),
                 'complemento' => trim($formulario['complemento']),
@@ -91,7 +94,7 @@ class Contatos extends Controller
                 elseif (Validar::validarCampoNumerico($formulario['ddd'])) :
                     $dados['ddd_erro'] = "Formato informado é <b>invalido</b>";
 
-                elseif (strlen($formulario['ddd'] ) != 2) :
+                elseif (strlen($formulario['ddd']) != 2) :
                     $dados['ddd_erro'] = "Quantidade informado é <b>invalido</b>";
 
                 elseif (Validar::validarCampoNumerico($formulario['numero'])) :
@@ -103,7 +106,7 @@ class Contatos extends Controller
                 elseif (Validar::validarCampoNumerico($formulario['cep'])) :
                     $dados['cep_erro'] = "Formato informado é <b>invalido</b>";
 
-                elseif (strlen($formulario['cep'] ) != 8) :
+                elseif (strlen($formulario['cep']) != 8) :
                     $dados['cep_erro'] = "Quantidade informado é <b>invalido</b>";
 
                 elseif (Validar::validarCampoString($formulario['rua'])) :
@@ -142,7 +145,7 @@ class Contatos extends Controller
                 endif;
 
             endif;
-            // var_dump($formulario);
+        // var_dump($formulario);
         else :
             $dados = [
                 'nome' => '',
@@ -173,4 +176,25 @@ class Contatos extends Controller
 
         $this->view('contatos/cadastar', $dados);
     }
+
+    public function cadastarTelefone()
+    {
+        // $dados = [
+        //     'ddd' => $_POST['ddd'],
+        //     'numero' => $_POST['numero']
+        // ];
+        // var_dump($dados);
+
+
+        $this->view('contatos/cadastarTelefone');
+    }
+
+
+    public function teste()
+    {
+        $this->view('contatos/teste');
+    }
+
+
+
 }

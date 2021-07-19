@@ -40,12 +40,4 @@ class Validar
         endif;
     }
 
-    public static function lucro($mediadeLucroDia)
-    {
-        return number_format($mediadeLucroDia, 2, ',', '');
-    }
-    public static function upperCase($upperCase)
-    {
-        return mb_strtoupper($upperCase);
-    }
 }
