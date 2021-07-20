@@ -20,7 +20,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <div class="container-fluid"> <button class="navbar-toggler navbar-toggler-right border-0 p-0" type="button" data-toggle="collapse" data-target="#navbar20">
-                <p class="navbar-brand text-white mb-0"> <i class="fa d-inline fa-lg fa-stop-circle"></i> BBBOOTSTRAP </p>
+                <p class="navbar-brand text-white mb-0"> <i class="fa d-inline fa-lg fa-stop-circle"></i> AGENDA </p>
             </button>
             <div class="collapse navbar-collapse" id="navbar20">
                 <ul class="navbar-nav mr-auto">
@@ -40,7 +40,7 @@
     <div class="container mt-5">
         <form>
             <label for="" class="text-center">Nome do contato: </label>
-            <input list="contato" type="text" class="form-control" placeholder="Pesquisar pelo nome do contato" id="search"  autocomplete="off">
+            <input list="contato" type="text" class="form-control" placeholder="Pesquisar pelo nome do contato" id="search" autocomplete="off">
 
             <datalist id="contato">
                 <?php foreach ($dados['todos'] as $contatos) : ?>
@@ -55,15 +55,7 @@
             <thead>
                 <tr>
                     <th>Nome do Contato</th>
-                    <th>Numero</th>
-                    <th>CEP</th>
-                    <th>Rua</th>
-                    <th>Complemento</th>
-                    <th>bairro</th>
-                    <th>Cidade</th>
-                    <th>uf</th>
-                    <th>Numero da casa</th>
-                    <th>Criação</th>
+                    <th>Data de criação</th>
                     <th>Adicionar</th>
                 </tr>
             </thead>
@@ -71,18 +63,11 @@
                 <?php foreach ($dados['todos'] as $contatos) : ?>
                     <tr>
                         <td><?= $contatos->nome ?></td>
-                        <td>(<?= $contatos->ddd ?>) <?= $contatos->numero ?></td>
-                        <td><?= $contatos->cep ?></td>
-                        <td><?= $contatos->logradouro ?></td>
-                        <td><?= $contatos->complemento ?></td>
-                        <td><?= $contatos->bairro ?></td>
-                        <td><?= $contatos->localidade  ?></td>
-                        <td><?= $contatos->uf  ?></td>
-                        <td><?= $contatos->numero_casa ?></td>
                         <td><?= Validar::dataBr($contatos->criado_em) ?></td>
                         <td>
                             <a href="#"></a>
                             <a href="#"></a>
+                            <a href="<?= URL?>/contatos/ver/<?= $contatos->id ?>">Ver</a>
                         </td>
                     </tr>
                 <?php endforeach ?>
@@ -90,8 +75,10 @@
         </table>
     </div>
 
-
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
 
     <script>
         $(document).ready(function() {

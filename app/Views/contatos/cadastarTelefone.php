@@ -16,7 +16,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
         <div class="container-fluid"> <button class="navbar-toggler navbar-toggler-right border-0 p-0" type="button" data-toggle="collapse" data-target="#navbar20">
-                <p class="navbar-brand text-white mb-0"> <i class="fa d-inline fa-lg fa-stop-circle"></i> BBBOOTSTRAP </p>
+                <p class="navbar-brand text-white mb-0"> <i class="fa d-inline fa-lg fa-stop-circle"></i> AGENDA </p>
             </button>
             <div class="collapse navbar-collapse" id="navbar20">
                 <ul class="navbar-nav mr-auto">
@@ -47,13 +47,13 @@
                         <div class="mb-3">
                             <label for="" class="form-label">DDD<sup class="text-danger">*</sup></label>
                             <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="basic-addon2" id="ddd" name="ddd">
-                            
+
                         </div>
 
                         <div class="mb-3">
                             <label for="" class="form-label">Numero do telefone<sup class="text-danger">*</sup></label>
                             <input type="text" class="form-control" id="numero" name="numero">
-                            
+
                         </div>
                     </div>
                     <!-- End telefone -->
@@ -64,11 +64,15 @@
     </form>
 
     <script src="<?= URL ?>/public/js/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+    
     <script>
         $('#form').on('click', '#submit', function(e) {
             e.preventDefault();
             $.ajax({
-                url: '<?= URL?>/contatos/teste',
+                url: '<?= URL ?>/contatos/teste',
                 type: "POST",
                 data: {
                     ddd: $('#ddd').val(),
@@ -79,10 +83,9 @@
                 },
                 error: (res) => {
                     console.log(res);
-                } 
+                }
             })
         });
-        
     </script>
 </body>
 

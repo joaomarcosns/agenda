@@ -188,4 +188,12 @@ class enderecoModel
             return false;
         endif;
     }
+
+    public function selectById($idContato)
+    {
+        $this->setIdContato($idContato);
+        $this->db->query("SELECT * from endereco where id_contato = :id_contato");
+        $this->db->bind(':id_contato', $this->getIdContato());
+        return $this->db->resultados();
+    }
 }

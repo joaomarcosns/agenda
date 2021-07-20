@@ -92,5 +92,11 @@ class telefoneModel
         endif;
     }
 
-    
+    public function selectById($idContato)
+    {
+        $this->setIdContato($idContato);
+        $this->db->query("SELECT * FROM telefone where id_contato = :id_contato");
+        $this->db->bind(':id_contato', $this->getIdContato());
+        return $this->db->resultados();
+    }
 }

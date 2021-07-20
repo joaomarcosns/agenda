@@ -1,5 +1,4 @@
 <?php 
-require_once 'contatos/cadastarTelefone';
 
 $contatos = new Contatos();
 

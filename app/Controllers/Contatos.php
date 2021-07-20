@@ -195,6 +195,21 @@ class Contatos extends Controller
         $this->view('contatos/teste');
     }
 
+    public function ver($id)
+    {
+        $contato =  $this->contatoModel->selectById($id);
+        $telefone = $this->telefoneModel->selectById($id);
+        $endereco = $this->enderecoModel->selectById($id);
+
+        $dados = [
+            'contato' => $contato,
+            'telefone' => $telefone,
+            'endereco' => $endereco
+        ];
+
+        $this->view('contatos/ver', $dados);
+    }
+
 
 
 }
