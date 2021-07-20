@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
-
-
 </head>
 
 <body>
@@ -49,7 +46,10 @@
             </datalist>
         </form>
 
-
+        <?= 
+            Sessao::mensagem('contato');
+            Sessao::mensagem('endereco');
+        ?>
 
         <table id="table-item" class="table table-bordered bg-light mt-5 table-responsive-sm table-responsive-md">
             <thead>
@@ -65,7 +65,7 @@
                         <td><?= $contatos->nome ?></td>
                         <td><?= Validar::dataBr($contatos->criado_em) ?></td>
                         <td>
-                            <a href="#"></a>
+                            <a href="<?= URL?>/contatos/cadastarEndereco/<?= $contatos->id ?>">Cadastrar novo endereço</a>
                             <a href="#"></a>
                             <a href="<?= URL?>/contatos/ver/<?= $contatos->id ?>">Ver</a>
                         </td>
@@ -97,11 +97,11 @@
                             table[i].style.display = "";
                         } else {
                             table[i].style.display = "none";
-                        }
-                    }
-                }
-            })
-        })
+                        };
+                    };
+                };
+            });
+        });
     </script>
 
 </body>

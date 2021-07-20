@@ -90,18 +90,21 @@ class contatoModel
         else :
             return false;
         endif;
-        // $ultimoid = $this->clienteModel->getUltimoId();
+        
     }
 
     public function selectAll($id)
     {
         $this->setIdUsuario($id);
-        $this->db->query("SELECT contato.id ,contato.nome, contato.criado_em, telefone.ddd, telefone.numero, endereco.cep, endereco.logradouro, endereco.complemento, endereco.bairro, endereco.localidade,
-        endereco.uf, endereco.numero_casa
-        from contato, telefone, endereco
-        where contato.id = telefone.id_contato
-        and contato.id = endereco.id_contato
-        and contato.id_usuario = :id_usuario");
+        $this->db->query('
+            SELECT contato.id ,contato.nome, contato.criado_em
+            FROM contato, telefone, endereco
+            WHERE contato.id = telefone.id_contato
+            AND contato.id = endereco.id_contato
+            AND contato.id_usuario = :id_usuario
+            GROUP BY contato.nome
+            ORDER BY contato.id ASC
+        ');
         $this->db->bind(':id_usuario', $this->getIdUsuario());
         return $this->db->resultados();
     }
@@ -109,7 +112,7 @@ class contatoModel
     public function selectById($id)
     {
         $this->setId($id);
-        $this->db->query("SELECT * from contato where id = :id");
+        $this->db->query('SELECT * FROM contato WHERE id = :id');
         $this->db->bind(':id', $this->getId());
         return $this->db->resultados();
     }

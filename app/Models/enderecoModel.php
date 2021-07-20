@@ -189,10 +189,39 @@ class enderecoModel
         endif;
     }
 
+    public function cadastro($dados, $id)
+    {
+        $this->setIdContato($id);
+        $this->setCep($dados['cep']);
+        $this->setLogradouro($dados['rua']);
+        $this->setComplemento($dados['complemento']);
+        $this->setBairro($dados['bairro']);
+        $this->setLocalidade($dados['cidade']);
+        $this->setUf($dados['uf']);
+        $this->setNumeroCasa($dados['numero-casa']);
+
+        $this->db->query("INSERT INTO endereco(id_contato, cep, logradouro, complemento, bairro, localidade, uf, numero_casa) VALUES (:id_contato, :cep, :logradouro, :complemento, :bairro, :localidade, :uf, :numero_casa)");
+
+        $this->db->bind(':id_contato', $this->getIdContato());
+        $this->db->bind(':cep', $this->getCep());
+        $this->db->bind(':logradouro', $this->getLogradouro());
+        $this->db->bind(':complemento', $this->getComplemento());
+        $this->db->bind(':bairro', $this->getBairro());
+        $this->db->bind(':localidade', $this->getLocalidade());
+        $this->db->bind(':uf', $this->getUf());
+        $this->db->bind(':numero_casa', $this->getNumeroCasa());
+
+        if ($this->db->executa()) :
+            return true;
+        else :
+            return false;
+        endif;
+    }
+
     public function selectById($idContato)
     {
         $this->setIdContato($idContato);
-        $this->db->query("SELECT * from endereco where id_contato = :id_contato");
+        $this->db->query("SELECT * FROM endereco WHERE id_contato = :id_contato");
         $this->db->bind(':id_contato', $this->getIdContato());
         return $this->db->resultados();
     }

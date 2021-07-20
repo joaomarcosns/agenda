@@ -9,7 +9,11 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= URL ?>/public/css/style.css">
-    
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
 
 </head>
 
@@ -32,52 +36,13 @@
         </div>
     </nav>
 
-    <!-- form -->
-    <form action="<?= URL ?>/contatos/cadastar" method="post">
-        <div class="container container-sm mt-5 ">
-            <div class="card">
-                <h5 class="card-header text-center">Agenda</h5>
-                <div class="card-body">
+    <!-- Cadastar endereço -->
 
-                    <div class="mb-3">
-                        <label for="" class="form-label">Nome<sup class="text-danger">*</sup></label>
-                        <input type="text" id="nome" name="nome" class="form-control <?= $dados['nome_erro'] ? 'is-invalid' : '' ?>" value="<?= $dados['nome'] ?>">
-                        <div class="invalid-feedback">
-                            <?= $dados['nome_erro'] ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card mt-5">
-                <h5 class="card-header text-center">Telefone</h5>
-                <div class="card-body">
-                    <!-- Telefone -->
-                    <div id="add-telefone" class="d-flex flex-row-reverse bd-highlight">
-                        <div class="p-2 bd-highlight"><button type="button" class="btn btn-success btn-sm"><i class="fa fa-plus"></i></button></div>
-                    </div>
-                    <div class="mb-3 " id="telefone">
-                        <div class="mb-3">
-                            <label for="" class="form-label">DDD<sup class="text-danger">*</sup></label>
-                            <input type="text" class="form-control  <?= $dados['ddd_erro'] ? 'is-invalid' : '' ?>" aria-label="Recipient's username" aria-describedby="basic-addon2" id="ddd" name="ddd" value="<?= $dados['ddd'] ?>">
-                            <div class="invalid-feedback">
-                                <?= $dados['ddd_erro'] ?>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="" class="form-label">Numero do telefone<sup class="text-danger">*</sup></label>
-                            <input type="text" class="form-control <?= $dados['numero_erro'] ? 'is-invalid' : '' ?>" id="numero" name="numero" value="<?= $dados['numero'] ?>">
-                            <div class="invalid-feedback">
-                                <?= $dados['numero_erro'] ?>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End telefone -->
-                </div>
-            </div>
-            
-
+    <?php 
+        $url = $_GET['url'];
+    ?>
+    <div class="container">
+        <form action="<?= URL ?>/<?= $url?>" method="post">
             <div class="card mt-5">
                 <h5 class="card-header text-center">Endereço</h5>
                 <div class="card-body">
@@ -90,7 +55,7 @@
 
                         <div class="mb-3">
                             <label for="" class="form-label">CEP<sup class="text-danger">*</sup></label>
-                            <input type="text" id="cep" name="cep" class="form-control <?= $dados['cep_erro'] ? 'is-invalid' : '' ?>" value="<?= $dados['cep'] ?>">
+                            <input type="text" id="cep" name="cep" class="form-control <?= $dados['cep_erro'] ? 'is-invalid' : '' ?>">
                             <div class="invalid-feedback">
                                 <?= $dados['cep_erro'] ?>
                             </div>
@@ -98,14 +63,14 @@
 
                         <div class="mb-3">
                             <label for="" class="form-label">Rua<sup class="text-danger">*</sup></label>
-                            <input type="text" id="rua" name="rua" class="form-control <?= $dados['rua_erro'] ? 'is-invalid' : '' ?>" value="<?= $dados['rua'] ?>">
+                            <input type="text" id="rua" name="rua" class="form-control <?= $dados['rua_erro'] ? 'is-invalid' : '' ?>">
                             <div class="invalid-feedback">
                                 <?= $dados['rua_erro'] ?>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Numero Casa<sup class="text-danger">*</sup></label>
-                            <input type="text" id="rua" name="numero-casa" class="form-control <?= $dados['numero-casa_erro'] ? 'is-invalid' : '' ?>" value="<?= $dados['numero-casa'] ?>">
+                            <input type="text" id="rua" name="numero-casa" class="form-control <?= $dados['numero-casa_erro'] ? 'is-invalid' : '' ?>">
                             <div class="invalid-feedback">
                                 <?= $dados['numero-casa_erro'] ?>
                             </div>
@@ -113,7 +78,7 @@
 
                         <div class="mb-3">
                             <label for="" class="form-label">Complemento<sup class="text-danger">*</sup></label>
-                            <input type="text" id="complemento" name="complemento" class="form-control <?= $dados['complemento_erro'] ? 'is-invalid' : '' ?>" value="<?= $dados['complemento'] ?>">
+                            <input type="text" id="complemento" name="complemento" class="form-control <?= $dados['complemento_erro'] ? 'is-invalid' : '' ?>">
                             <div class="invalid-feedback">
                                 <?= $dados['complemento_erro'] ?>
                             </div>
@@ -121,7 +86,7 @@
 
                         <div class="mb-3">
                             <label for="" class="form-label">Bairro<sup class="text-danger">*</sup></label>
-                            <input type="text" id="bairro" name="bairro" class="form-control <?= $dados['bairro_erro'] ? 'is-invalid' : '' ?>" value="<?= $dados['bairro'] ?>">
+                            <input type="text" id="bairro" name="bairro" class="form-control <?= $dados['bairro_erro'] ? 'is-invalid' : '' ?>">
                             <div class="invalid-feedback">
                                 <?= $dados['bairro_erro'] ?>
                             </div>
@@ -145,23 +110,14 @@
                                 <?= $dados['estado_erro'] ?>
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
-                    <!-- End endereco -->
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </div>
-        </div>
-    </form>
-
-
-
+        </form>
+    </div>
 
     <script src="<?= URL ?>/public/js/jquery-3.6.0.min.js"></script>
     <script src="<?= URL ?>/public/js/viaCEP.js"></script>
     <script src="<?= URL ?>/public/js/jquery.maskedinput-1.1.4.pack.js"></script>
-    <!-- <script src="<?= URL ?>/public/js/mask.js"></script> -->
-    <!-- <script src="<?= URL ?>/public/js/telefone.js"></script> -->
-
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 
 $contatos = new Contatos();
 
-// $contatos->cadastarTelefone($);
+// $contatos->cadastarTelefone($ddd, $numero);
 
 $ddd = $_POST['ddd'];
 $numero = $_POST['numero'];

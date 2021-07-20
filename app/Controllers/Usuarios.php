@@ -76,7 +76,7 @@ class Usuarios extends Controller
                     $dados['senha'] = password_hash($formulario['senha'], PASSWORD_DEFAULT);
 
                     if ($this->usuarioModel->insert($dados)) :
-                        echo 'Cadastro realizado como sucesso <hr>';
+                        Sessao::mensagem('usuario', 'Cadastro realizado com sucesso');
                         Redirect::redirecionar('usuarios/login');
 
                     else :

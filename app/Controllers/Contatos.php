@@ -19,9 +19,9 @@ class Contatos extends Controller
         $todos  = $this->contatoModel->selectAll($idUsuario);
 
         $dados = [
-            'todos'  => $todos  
+            'todos'  => $todos
         ];
-        
+
         $this->view('contatos/index', $dados);
     }
 
@@ -125,19 +125,20 @@ class Contatos extends Controller
                     if ($this->contatoModel->cadastar($dados)) :
                         $ultimoid = $this->contatoModel->getUltimoId();
                         $ultimoid =  (int) $ultimoid;
-                        echo "Ok";
+
                     else :
                         die("Erro");
                     endif;
 
                     if ($this->telefoneModel->cadastar($dados, $ultimoid)) :
-                        echo "Ok";
+
                     else :
                         die("Erro");
                     endif;
 
                     if ($this->enderecoModel->cadastar($dados, $ultimoid)) :
-                        echo "Ok";
+                        Sessao::mensagem('contato', 'Contato cadastrado com sucesso!');
+                        Redirect::redirecionar('contatos/index');
                     else :
                         die("Erro");
                     endif;
@@ -162,6 +163,7 @@ class Contatos extends Controller
                 'nome_erro' => '',
                 'ddd_erro' => '',
                 'numero_erro' => '',
+
                 'cep_erro' => '',
                 'rua_erro' => '',
                 'complemento_erro' => '',
@@ -210,6 +212,97 @@ class Contatos extends Controller
         $this->view('contatos/ver', $dados);
     }
 
+    public function cadastarEndereco($id)
+    {
+        $formulario = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        if (isset($formulario)) :
+            $dados = [
+                'cep' => trim($formulario['cep']),
+                'rua' => trim($formulario['rua']),
+                'complemento' => trim($formulario['complemento']),
+                'bairro' => trim($formulario['bairro']),
+                'cidade' => trim($formulario['city']),
+                'uf' => trim($formulario['estado']),
+                'numero-casa' => trim($formulario['numero-casa'])
+            ];
+            if (in_array("", $formulario)) :
+                if (empty($formulario['cep'])) :
+                    $dados['cep_erro'] = "Preencha o campo!";
+                endif;
 
+                if (empty($formulario['rua'])) :
+                    $dados['rua_erro'] = "Preencha o campo!";
+                endif;
 
+                if (empty($formulario['complemento'])) :
+                    $dados['complemento_erro'] = "Preencha o campo!";
+                endif;
+
+                if (empty($formulario['bairro'])) :
+                    $dados['bairro_erro'] = "Preencha o campo!";
+                endif;
+
+                if (empty($formulario['cidade'])) :
+                    $dados['cidade_erro'] = "Preencha o campo!";
+                endif;
+
+                if (empty($formulario['uf'])) :
+                    $dados['uf_erro'] = "Preencha o campo!";
+                endif;
+
+                if (empty($formulario['numero-casa'])) :
+                    $dados['numero-casa_erro'] = "Preencha o campo!";
+                endif;
+            else :
+                if (Validar::validarCampoNumerico($formulario['cep'])) :
+                    $dados['cep_erro'] = "Formato informado é <b>invalido</b>";
+
+                elseif (strlen($formulario['cep']) != 8) :
+                    $dados['cep_erro'] = "Quantidade informado é <b>invalido</b>";
+
+                elseif (Validar::validarCampoString($formulario['rua'])) :
+                    $dados['rua_erro'] = "Formato informado é <b>invalido</b>";
+
+                elseif (Validar::validarCampoString($formulario['complemento'])) :
+                    $dados['complemento_erro'] = "Formato informado é <b>invalido</b>";
+
+                elseif (Validar::validarCampoString($formulario['bairro'])) :
+                    $dados['bairro_erro'] = "Formato informado é <b>invalido</b>";
+
+                elseif (Validar::validarCampoNumerico($formulario['numero-casa'])) :
+                    $dados['numero-casa_erro'] = "Formato informado é <b>invalido</b>";
+                else :
+                    $idint = (int)$id;
+                    if ($this->enderecoModel->cadastro($dados, $idint)) :
+                        Sessao::mensagem('endereco', 'Endereço cadastrado com sucesso!');
+                        Redirect::redirecionar('contatos/index');
+                    else :
+                        die("Erro");
+                    endif;
+                endif;
+            endif;
+
+        else :
+
+            $dados = [
+                'cep' => '',
+                'rua' => '',
+                'complemento' => '',
+                'bairro' => '',
+                'cidade' => '',
+                'uf' => '',
+                'numero-casa' => '',
+
+                'cep_erro' => '',
+                'rua_erro' => '',
+                'complemento_erro' => '',
+                'bairro_erro' => '',
+                'cidade_erro' => '',
+                'uf_erro' => '',
+                'numero-casa_erro' => '',
+            ];
+
+        endif;
+        $this->view('contatos/cadastarEndereco');
+    }
 }
