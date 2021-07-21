@@ -17,7 +17,7 @@
             <form method="post" action="<?= URL ?>/usuarios/login">
                 <div class="mb-3">
                     <label for="" class="form-label">Usuario</label>
-                    <input type="text" name="usuario" id="usuario" required class="form-control <?= $dados['usuario_erro'] ? 'is-invalid' : '' ?>" value="<?= $dados['usuario'] ?>">
+                    <input type="text" name="usuario" id="usuario" required class="form-control <?= $dados['usuario_erro'] ? 'is-invalid' : '' ?>">
                     <div class="invalid-feedback">
                         <?= $dados['usuario_erro'] ?>
                     </div>
@@ -25,7 +25,7 @@
 
                 <div class="mb-3">
                     <label for="" class="form-label">Senha</label>
-                    <input type="password" name="senha" id="senha" required class="form-control <?= $dados['senha_erro'] ? 'is-invalid' : '' ?>" value="<?= $dados['senha'] ?>">
+                    <input type="password" name="senha" id="senha" required class="form-control <?= $dados['senha_erro'] ? 'is-invalid' : '' ?>">
                     <div class="invalid-feedback">
                         <?= $dados['senha_erro'] ?>
                     </div>
