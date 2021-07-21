@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -8,11 +8,15 @@
     <title>LOGIN</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="<?= URL ?>/public/css/style.css">
+    <link rel="shortcut icon" href="<?= URL ?>/public/img/calendar-alt-regular.svg" type="image/x-icon">
 </head>
+
 <div class="d-flex justify-content-center align-items-center mt-5">
     <div class="card" style="width: 30rem;">
         <h2 class="card-title text-center mt-2">Login</h2>
-        <?= Sessao::mensagem('usuario') ?>
+        <div class="text-center">
+            <?= Sessao::mensagem('usuario') ?>
+        </div>
         <div class="card-body">
             <form method="post" action="<?= URL ?>/usuarios/login">
                 <div class="mb-3">

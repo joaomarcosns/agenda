@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -44,9 +44,9 @@
         Sessao::mensagem('endereco');
         ?>
 
-        <table id="table-item" class="table table-bordered bg-light mt-5 table-responsive-sm table-responsive-md">
+        <table id="table-item" class="table table-bordered bg-light mt-5 table-responsive-sm table-responsive-md ">
             <thead>
-                <tr>
+                <tr class="text-center">
                     <th>Nome do Contato</th>
                     <th>Data de criação</th>
                     <th>Adicionar</th>
@@ -54,13 +54,13 @@
             </thead>
             <tbody>
                 <?php foreach ($dados['todos'] as $contatos) : ?>
-                    <tr>
+                    <tr class="text-center">
                         <td><?= $contatos->nome ?></td>
                         <td><?= Validar::dataBr($contatos->criado_em) ?></td>
                         <td>
-                            <a class="btn btn-primary btn-sm ml-2" href="<?= URL ?>/contatos/cadastarEndereco/<?= $contatos->id ?>"><i class="fa fa-plus"><i class="fas fa-home"></i></i></a>
-                            <a href="#"></a>
-                            <a class="btn btn-success btn-sm ml-2"href="<?= URL ?>/contatos/ver/<?= $contatos->id ?>"><i class="fa fa-eye"></i></a>
+                            <a title="Cadastar Endereço" class="btn btn-primary btn-sm ml-2" href="<?= URL ?>/contatos/cadastarEndereco/<?= $contatos->id ?>"><i class="fa fa-plus"><i class="fas fa-home"></i></i></a>
+                            <a title="Cadastar telefone" class="btn btn-secondary btn-sm ml-2"href="<?= URL ?>/contatos/cadastarTelefone"><i class="fa fa-phone"><i class="fa fa-plus"></i></i></a>
+                            <a title="Ver" class="btn btn-success btn-sm ml-2"href="<?= URL ?>/contatos/ver/<?= $contatos->id ?>"><i class="fa fa-eye"></i></a>
                         </td>
                     </tr>
                 <?php endforeach ?>
